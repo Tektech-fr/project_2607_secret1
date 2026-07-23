@@ -1,35 +1,38 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    font-family: sans-serif;
-    display: flex;
-    justify-content: center;
-    padding: 2rem;
+  margin: 0;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
 }
 
 main {
-    text-align: center;
+  text-align: center;
 }
 
 #game_board {
-    display: grid;
+  display: grid;
 
-    grid-template-columns: repeat(12, 40px);
-    grid-template-rows: repeat(12, 40px);
+  width: 80vmin;
+  aspect-ratio: 1;
 
-    gap: 2px;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  grid-template-rows: repeat(var(--grid-rows), 1fr);
 
-    margin-top: 2rem;
+  gap: 2px;
+
+  margin-top: 2rem;
 }
 
 .cell {
-    width: 40px;
-    height: 40px;
+  width: 100%;
+  aspect-ratio: 1;
 
-    border: 1px solid #444;
+  border: 1px solid #444;
 
-    background: white;
+  background: white;
 }
