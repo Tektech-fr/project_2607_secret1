@@ -1,24 +1,18 @@
-use axum::{Json, Router, routing::get};
-use tower_http::services::{ServeDir, ServeFile};
+use tokio::net::TcpListener;
 
 mod game;
-use game::GameState;
-
-async fn state() -> Json<GameState> {
-    Json(GameState::new(10))
-}
+mod server;
+// mod view;
 
 #[tokio::main]
 async fn main() {
-    let app = Router::new()
-        .route("/api/state", get(state))
-        .fallback_service(
-            ServeDir::new("static").not_found_service(ServeFile::new("static/index.html")),
-        );
+    let app = server::router();
 
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:3000")
+    let listener = TcpListener::bind("127.0.0.1:3000")
         .await
-        .unwrap();
+        .expect("Impossible de lier l'écouteur TCP");
 
-    axum::serve(listener, app).await.unwrap();
+    println!("En écoute sur http://127.0.0.1:3000");
+
+    axum::serve(listener, app).await.expect("Erreur serveur");
 }
