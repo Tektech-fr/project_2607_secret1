@@ -1,21 +1,32 @@
-const config = {
-  width: 12,
-  height: 12,
-};
+async function loadGame() {
+  const response = await fetch("/api/state");
 
-const board = document.getElementById("game_board");
-board.style.setProperty("--grid-columns", config.width);
-board.style.setProperty("--grid-rows", config.height);
+  const state = await response.json();
 
-for (let y = 0; y < config.height; y++) {
-  for (let x = 0; x < config.width; x++) {
-    const cell = document.createElement("button");
+  render(state);
+}
 
-    cell.className = "cell";
+function render(state) {
+  const board = document.querySelector("#game_board");
 
-    cell.dataset.x = x;
-    cell.dataset.y = y;
+  board.style.gridTemplateColumns = `repeat(${state.size}, 1fr)`;
 
-    board.appendChild(cell);
+  board.style.gridTemplateRows = `repeat(${state.size}, 1fr)`;
+
+  board.innerHTML = "";
+
+  for (const cell of state.cells) {
+    const div = document.createElement("div");
+
+    div.className = "cell";
+
+    div.style.background = cell.color;
+
+    div.onclick = () => {
+      div.style.background = div.style.background === "white" ? "red" : "white";
+    };
+    board.appendChild(div);
   }
 }
+
+loadGame();
