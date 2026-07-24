@@ -11,7 +11,7 @@
     <script defer src="/static/script.js"></script>
   </head>
 
-  <body>
+  <body style="--bg-image: {{ background_image }};">
     <h1>{{ title }}</h1>
 
     <main>
@@ -20,13 +20,14 @@
         style="
         --rows: {{ rows }};
         --cols: {{ cols }};
-"
+        "
       >
         {% for y in 0..rows %} {% for x in 0..cols %}
 
         <button
           class="cell"
           data-cell
+          data-visible="true"
           data-x="{{ x }}"
           data-y="{{ y }}"
         ></button>
