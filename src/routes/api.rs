@@ -9,7 +9,7 @@ pub fn router() -> Router {
 
 async fn home() -> Html<String> {
     let page = LayoutTemplate {
-        title: "Projet Rust",
+        title: "Goat X",
         rows: 12,
         cols: 12,
     };

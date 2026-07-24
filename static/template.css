@@ -3,13 +3,26 @@
 }
 
 body {
-  margin: 2rem;
+  height: 100vh;
+
+  margin: 0;
+  padding-top: 2rem;
   font-family: sans-serif;
+  text-align: center;
+  background: center / cover no-repeat url("/static/assets/goat1.webp");
+}
+
+h1 {
+  margin-top: 0;
+}
+
+main {
+  display: flex;
+  justify-content: center;
 }
 
 #main_board {
   display: grid;
-
   grid-template-columns: repeat(var(--cols), 1fr);
 
   width: min(90vmin, 800px);
@@ -21,8 +34,6 @@ body {
   width: 100%;
 
   aspect-ratio: 1;
-
   user-select: none;
-
   cursor: pointer;
 }
