@@ -1,18 +1,16 @@
-use tokio::net::TcpListener;
+mod routes;
+mod views;
 
-mod game;
-mod server;
-// mod view;
+use tokio::net::TcpListener;
+use tower_http::services::ServeDir;
 
 #[tokio::main]
-async fn main() {
-    let app = server::router();
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let listener = TcpListener::bind("127.0.0.1:3000").await?;
 
-    let listener = TcpListener::bind("127.0.0.1:3000")
-        .await
-        .expect("Impossible de lier l'écouteur TCP");
+    let app = routes::api::router().nest_service("/static", ServeDir::new("static"));
 
-    println!("En écoute sur http://127.0.0.1:3000");
+    axum::serve(listener, app).await?;
 
-    axum::serve(listener, app).await.expect("Erreur serveur");
+    Ok(())
 }
