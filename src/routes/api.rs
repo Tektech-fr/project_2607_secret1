@@ -9,10 +9,10 @@ pub fn router() -> Router {
 
 async fn home() -> Html<String> {
     let images = [
-        "/static/assets/goat1.webp",
-        "/static/assets/goat2.avif",
-        "/static/assets/goat3.avif",
-        "/static/assets/goat4.jpg",
+        "url('/static/assets/goat1.webp')",
+        "url('/static/assets/goat2.avif')",
+        "url('/static/assets/goat3.avif')",
+        "url('/static/assets/goat4.jpg')",
     ];
 
     let page = LayoutTemplate {
