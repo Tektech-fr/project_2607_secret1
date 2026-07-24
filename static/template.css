@@ -22,5 +22,7 @@ body {
 
   aspect-ratio: 1;
 
+  user-select: none;
+
   cursor: pointer;
 }
