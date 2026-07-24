@@ -24,7 +24,12 @@
       >
         {% for y in 0..rows %} {% for x in 0..cols %}
 
-        <button class="cell" data-x="{{ x }}" data-y="{{ y }}"></button>
+        <button
+          class="cell"
+          data-cell
+          data-x="{{ x }}"
+          data-y="{{ y }}"
+        ></button>
 
         {% endfor %} {% endfor %}
       </div>
