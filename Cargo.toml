@@ -1,10 +1,10 @@
 [package]
-name = "project_2607_secret1"
-version = "0.1.0"
+name = "clickable_grid"
+version = "0.4.0"
 edition = "2024"
 
 [dependencies]
+askama = "0.16.0"
 axum = "0.8.9"
-serde = { version = "1.0.229", features = ["derive"] }
 tokio = { version = "1.53.1", features = ["full"] }
 tower-http = { version = "0.7.0", features = ["fs"] }

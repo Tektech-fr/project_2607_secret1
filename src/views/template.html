@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <title>{{ title }}</title>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/static/template.css" />
+
+    <script defer src="/static/script.js"></script>
+  </head>
+
+  <body>
+    <h1>{{ title }}</h1>
+
+    <main>
+      <div
+        id="main_board"
+        style="
+        --rows: {{ rows }};
+        --cols: {{ cols }};
+"
+      >
+        {% for y in 0..rows %} {% for x in 0..cols %}
+
+        <button class="cell" data-x="{{ x }}" data-y="{{ y }}"></button>
+
+        {% endfor %} {% endfor %}
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,24 +1,16 @@
-use axum::{Json, Router, routing::get};
-use tower_http::services::{ServeDir, ServeFile};
+mod routes;
+mod views;
 
-mod game;
-use game::GameState;
-
-async fn state() -> Json<GameState> {
-    Json(GameState::new(10))
-}
+use tokio::net::TcpListener;
+use tower_http::services::ServeDir;
 
 #[tokio::main]
-async fn main() {
-    let app = Router::new()
-        .route("/api/state", get(state))
-        .fallback_service(
-            ServeDir::new("static").not_found_service(ServeFile::new("static/index.html")),
-        );
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let listener = TcpListener::bind("127.0.0.1:3000").await?;
 
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:3000")
-        .await
-        .unwrap();
+    let app = routes::api::router().nest_service("/static", ServeDir::new("static"));
 
-    axum::serve(listener, app).await.unwrap();
+    axum::serve(listener, app).await?;
+
+    Ok(())
 }
