@@ -8,10 +8,18 @@ pub fn router() -> Router {
 }
 
 async fn home() -> Html<String> {
+    let images = [
+        "/static/assets/goat1.webp",
+        "/static/assets/goat2.avif",
+        "/static/assets/goat3.avif",
+        "/static/assets/goat4.jpg",
+    ];
+
     let page = LayoutTemplate {
         title: "Goat X",
         rows: 12,
         cols: 12,
+        background_image: images[rand::random_range(0..images.len())].to_string(),
     };
 
     Html(page.render().expect("template Askama invalide"))

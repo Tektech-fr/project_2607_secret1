@@ -6,4 +6,5 @@ pub struct LayoutTemplate {
     pub title: &'static str,
     pub rows: usize,
     pub cols: usize,
+    pub background_image: String,
 }

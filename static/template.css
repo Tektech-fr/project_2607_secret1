@@ -9,7 +9,7 @@ body {
   padding-top: 2rem;
   font-family: sans-serif;
   text-align: center;
-  background: center / cover no-repeat url("/static/assets/goat1.webp");
+  background: center / cover no-repeat var(--bg-image);
 }
 
 h1 {
