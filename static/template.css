@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 2rem;
+  font-family: sans-serif;
+}
+
+#main_board {
+  display: grid;
+
+  grid-template-columns: repeat(var(--cols), 1fr);
+
+  width: min(90vmin, 800px);
+
+  gap: 2px;
+}
+
+.cell {
+  width: 100%;
+
+  aspect-ratio: 1;
+
+  cursor: pointer;
+}
